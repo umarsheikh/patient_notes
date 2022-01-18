@@ -25,6 +25,7 @@ class Note < ApplicationRecord
   def published?
     state == 'published'
   end
+
   def delete_other_goals(current_goals)
     goals.each do |goal|
       unless current_goals.index(goal)
