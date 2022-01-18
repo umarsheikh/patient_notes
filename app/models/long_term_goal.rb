@@ -1,0 +1,3 @@
+class LongTermGoal < Goal
+
+end

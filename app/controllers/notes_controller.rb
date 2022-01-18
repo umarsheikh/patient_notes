@@ -1,4 +1,5 @@
 class NotesController < ApplicationController
+  protect_from_forgery with: :null_session
   before_action :set_note, only: %i[ show edit update destroy ]
 
   # GET /notes or /notes.json
@@ -21,28 +22,28 @@ class NotesController < ApplicationController
 
   # POST /notes or /notes.json
   def create
-    @note = Note.new(note_params)
-
+    @note = Note.new(description: note_params['description'])
     respond_to do |format|
       if @note.save
-        format.html { redirect_to note_url(@note), notice: "Note was successfully created." }
-        format.json { render :show, status: :created, location: @note }
+        format.json do
+          render json: { noteId: @note.id, error: nil }
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.json do
+          render json: { error: @note.errors.full_messages }
+        end
       end
     end
   end
 
   # PATCH/PUT /notes/1 or /notes/1.json
   def update
+    puts 'in update'
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to note_url(@note), notice: "Note was successfully updated." }
-        format.json { render :show, status: :ok, location: @note }
+        format.json { render json: { saved: 'ok' } }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
+        format.json { render json: @note.errors }
       end
     end
   end
@@ -60,11 +61,12 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      @note = Note.find(params[:id]) if params[:id]
+      @note ||= Note.new
     end
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:description, :patient_id, :doctor_id)
+      params.require(:note).permit(:description, :patient_id, :doctor_id, :id)
     end
 end

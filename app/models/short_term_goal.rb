@@ -1,0 +1,3 @@
+class ShortTermGoal < Goal
+
+end

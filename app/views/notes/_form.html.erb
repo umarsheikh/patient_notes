@@ -16,17 +16,8 @@
     <%= form.text_area :description %>
   </div>
 
-  <div>
-    <%= form.label :patient_id, style: "display: block" %>
-    <%= form.number_field :patient_id %>
-  </div>
-
-  <div>
-    <%= form.label :doctor_id, style: "display: block" %>
-    <%= form.number_field :doctor_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= hidden_field_tag :id, @note&.id&.presence %>
 <% end %>
+  <div>
+    <%= button_to 'Complete Note', notes_path, method: :get  %>
+  </div>
