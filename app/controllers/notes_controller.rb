@@ -69,4 +69,5 @@ class NotesController < ApplicationController
     def note_params
       params.require(:note).permit(:description, :patient_id, :doctor_id, :id)
     end
+
 end
