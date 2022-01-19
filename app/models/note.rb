@@ -4,6 +4,8 @@ class Note < ApplicationRecord
   has_many :goals
   after_save :handle_goals
 
+  validates_presence_of :description
+
   STATES = %w(published draft)
 
   def handle_goals

@@ -10,14 +10,21 @@
       </ul>
     </div>
   <% end %>
+<div id="notes">
+  <div class="note-container">
+    <div>
+      <div class="note-title">
+        <strong><%= form.label :description, style: "display: block" %></strong>
+      </div>
+      <div class="note-description">
+        <%= form.text_area :description, id: 'description' %>
+      </div>
+    </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <%= hidden_field_tag :id, @note&.id&.presence %>
+    <%= hidden_field_tag :id, @note&.id&.presence %>
 <% end %>
-  <div>
-    <%= button_to 'Complete Note', notes_path, method: :get  %>
+    <div>
+      <%= link_to "Publish", notes_path, id: 'publish-note-button' %>
+    </div>
   </div>
+</div>

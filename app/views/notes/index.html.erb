@@ -1,15 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Notes</h1>
+<div class="page-title-container">
+  <h1>Notes</h1>
+  <%= link_to "NEW", new_note_path, id: 'new-note-button' %>
+</div>
+
 
 <div id="notes">
   <% @notes.each do |note| %>
     <%= render note %>
-    <p>
-      <%= link_to "Show this note", note %>
-    </p>
   <% end %>
-  <%= link_to "Add Goals", new_goal_path %>
 </div>
-
-<%= link_to "New note", new_note_path %>

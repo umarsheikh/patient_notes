@@ -1,6 +1,6 @@
 $(function() {
-  $('#note_description').on('input', () => {
-    let description = $('#note_description').val()
+  $('#description').on('input', () => {
+    let description = $('#description').val()
     let noteId = $('#id').val()
     submitData(description, noteId)
   })

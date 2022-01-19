@@ -1,7 +1,10 @@
-<div id="<%= dom_id note %>">
-  <p>
-    <strong>Description:</strong>
-    <%= note.description %>
-  </p>
-
+<div class="note-container">
+  <div class="note-title">
+    <strong>Description</strong>
+    <%= link_to "Edit", edit_note_path(note), id: 'edit-note-button' %>
+    <%= button_to "X", note, method: :delete, id: 'delete-note-button' %>
+  </div>
+  <div class="note-description">
+    <%= simple_format note.description %>
+  </div>
 </div>
