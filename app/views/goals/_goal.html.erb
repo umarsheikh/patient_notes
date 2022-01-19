@@ -1,15 +1,15 @@
-<div id="<%= dom_id goal %>">
-  <p>
+<div class="goal" id="<%= dom_id goal %>">
+  <p class='goal-title'>
     <strong>Title:</strong>
     <%= goal.title %>
   </p>
 
-  <p>
+  <p class='goal-type'>
     <strong>Type:</strong>
-    <%= goal.type %>
+    <%= goal.display_type %>
   </p>
 
-  <p>
+  <p class='goal-note'>
     <strong>Note:</strong>
     <%= goal.note_id %>
   </p>
